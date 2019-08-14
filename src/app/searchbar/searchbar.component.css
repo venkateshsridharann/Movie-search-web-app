@@ -1,0 +1,16 @@
+.search{
+padding-top: 6%;
+padding-bottom: 6%;
+ background-color:rgb(0,0,0,0.9);
+ box-shadow: 3px 3px 5px black;
+ color: white;   
+ border-radius: 15px;
+
+}
+
+#logo{
+    color : rgb(185,9,11);
+}
+#logo p{
+    color: white;
+}

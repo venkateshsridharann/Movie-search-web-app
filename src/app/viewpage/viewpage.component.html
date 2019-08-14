@@ -1,0 +1,26 @@
+<div *ngIf='this.dataService.data_response =="True"'>
+  <div *ngFor='let x of this.dataService.data'class="row" style=" height: 350px; margin-left: 10px; float:left;">
+    <a routerLink="/details" routerLinkActive="activated" [routerLinkActiveOptions]={exact:true}>
+      <div (click)='this.dataService.movieDetails(x.imdbID)' class="card" style="width: 18rem; margin: 10px;">
+        <div *ngIf='x.Poster != "N/A"'>
+          <img class="card-img-top" height=' 250px' width='150px' src="{{x.Poster}}" alt="Card image cap">
+        </div>
+        <div *ngIf='x.Poster == "N/A"'>
+          <img class="card-img-top" height=' 250px' width='150' src="https://cdn.amctheatres.com/Media/Default/Images/noposter.jpg" alt="Card image cap">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{x.Title}}</h5>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+<div style=" margin: 8%;" *ngIf='this.dataService.data_response =="False"'>
+  <div *ngIf='this.dataService.data == "Too many results."'>
+  <h1 style=" color:white; background-color: black; width: fit-content; ">{{this.dataService.data}} Try searching more specifically.</h1>
+</div>
+<div *ngIf='this.dataService.data != "Too many results."'>
+  <h1 style=" color:white; background-color: black; width: fit-content; ">{{this.dataService.data}} Try searching again</h1>
+</div>
+</div>
+

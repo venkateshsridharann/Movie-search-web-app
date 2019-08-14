@@ -1,0 +1,35 @@
+
+<div id='backbtn' style="text-align:left;">
+    <a routerLink="/movies" routerLinkActive="activated" [routerLinkActiveOptions]={exact:true}>
+      <button class="btn btn-warning" (click)='this.dataService.search()'>Back</button>
+    </a>
+    </div>
+<div class="card">
+  <div style="align-self:center;">
+    <div *ngIf='this.dataService.movie_data.Poster != "N/A"'>
+      <img style=" height: 300px; width: 200px;" src="{{this.dataService.movie_data.Poster}}" alt="Card image cap">
+    </div>
+    <div *ngIf='this.dataService.movie_data.Poster == "N/A"'>
+      <img style=" height: 300px; width: 200px;" src="https://i.ytimg.com/vi/6kCSVT3r_Qg/hqdefault.jpg" alt="Card image cap">
+    </div>
+    
+  </div>
+  <br>
+  <div>
+        <h2> <span style='color:rgb(185,9,11);'> {{this.dataService.movie_data.Title}} ({{this.dataService.movie_data.Year}})</span> | <img src="../../star.png" style='height: 30px; width: 30px; padding-bottom: 2px;'><span style="color:goldenrod">  {{this.dataService.movie_data.Ratings[0].Value}}</span></h2>
+        <h3>Rated:{{this.dataService.movie_data.Rated}} | Runtime:{{this.dataService.movie_data.Runtime}} | Genre:{{this.dataService.movie_data.Genre}} | Released:{{this.dataService.movie_data.Released}}</h3>
+        <br>
+        <div>
+        <h4 >Actors: {{this.dataService.movie_data.Actors}}</h4>
+        <h4 >Director: {{this.dataService.movie_data.Director}}</h4>
+        <h4 >Writer: {{this.dataService.movie_data.Writer}}</h4>
+        <h4 >Awards: {{this.dataService.movie_data.Awards}}</h4>
+        <h4 >Box Office: {{this.dataService.movie_data.BoxOffice}}</h4>
+      </div>
+        <br>
+        <br>
+        
+        <h4>{{this.dataService.movie_data.Plot}}</h4>
+
+  </div>
+</div>

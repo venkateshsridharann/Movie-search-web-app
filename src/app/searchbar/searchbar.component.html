@@ -1,0 +1,60 @@
+
+<div class="container search" style="margin-top: 8%;">
+  <div class="col-md-6 col-md-offset-3">     
+    <div class="row">
+      <div id="logo" class="text-center">
+        <h1>Let's Find Movies</h1>
+      </div>
+      <form role="form" id="form-buscar">
+        <div class="form-group">
+          <div class="input-group">
+            <input id="1" class="form-control" type="text" name="search" [(ngModel)]='this.dataService.searchquery' placeholder="Search..." required/>
+            <span class="input-group-btn">
+              <a routerLink="/movies" routerLinkActive="activated" [routerLinkActiveOptions]={exact:true}>
+                <button [disabled]='this.dataService.searchquery == ""' (click)='this.dataService.search()'class="btn btn-primary" type="submit">
+                  <i class="glyphicon glyphicon-search" aria-hidden="true"></i> Search
+                </button>
+              </a>
+            </span>
+          </div>
+          <p style='cursor:pointer; text-align: left; margin-top:10px; border: solid rgb(185,9,11) 1px; border-radius:10px; width: 35%; text-align: center; color: rgb(185,9,11);' (click)='toggle=!toggle'>advanced search parameters</p>
+          <div *ngIf='toggle'>
+              <input style='float: left; margin-right:10px; width: 32%;' id="2" class="form-control" type="number" name="year" [(ngModel)]='this.dataService.year' placeholder="Year"/>
+              <select style='float:left; margin-right:10px; width: 32%;' id="3" class="form-control" name="Plot" [(ngModel)]='this.dataService.plot'>
+                  <option value="" disabled selected>Plot</option>
+                  <option value="short">Short</option>  
+                  <option value="full">Full</option>  
+              </select>
+              <select style=' margin-right:10px; width: 32%;' id="2" class="form-control" name="Plot" [(ngModel)]='this.dataService.type'>
+                  <option value="" disabled selected>Type</option>
+                  <option value="movie">Movie</option> 
+                  <option value="series">Series</option>  
+                  <option value="episode">Episode</option>  
+              </select>
+          
+          </div>
+        </div>
+      </form>
+    </div>            
+  </div>
+</div>
+<h3 style='color: white; text-align: left; margin-left:12% !important;'>Movies from 2018</h3>
+<div class="container search" style="margin-top: 2%;">
+  <div class="row">
+    <div  *ngFor='let x of this.dataService.latest'class="row" style=" height: 350px; margin-left: 10px; float:left;">
+      <a routerLink="/details" routerLinkActive="activated" [routerLinkActiveOptions]={exact:true}>
+        <div (click)='this.dataService.movieDetails(x.imdbID)' class="card" style="width: 18rem; margin: 10px;">
+          <div *ngIf='x.Poster != "N/A"'>
+            <img class="card-img-top" height=' 250px' width='150px' src="{{x.Poster}}" alt="Card image cap">
+          </div>
+          <div *ngIf='x.Poster == "N/A"'>
+            <img class="card-img-top" height=' 250px' width='150' src="https://cdn.amctheatres.com/Media/Default/Images/noposter.jpg" alt="Card image cap">
+          </div>
+        <div class="card-body">
+          <h5 class="card-title">{{x.Title}}</h5>
+        </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
